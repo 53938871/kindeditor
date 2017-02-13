@@ -1,0 +1,61 @@
+#coy peng
+只支行servlet3.0
+参考:http://kindeditor.net/demo.php
+
+<form>
+		<textarea name="content" style="width:700px;height:200px;visibility:hidden;">KindEditor</textarea>
+</form>
+宽度和高度需要自己在textarea中设置
+------------example---------------
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KindEditor JSP</title>
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="kindeditor/plugins/code/prettify.css" />
+    <script charset="utf-8" src="kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
+    <script charset="utf-8" src="kindeditor/plugins/code/prettify.js"></script>
+    <script charset="utf-8" src="kindeditor/bootstart.js"></script>
+    <script>
+        //Sniper.KindEditor.init('example','content1');
+        Sniper.KindEditor.simple('example','content1');
+
+    </script>
+</head>
+<body>
+<%=htmlData%>
+<form name="example" method="post" action="demo.jsp">
+    <textarea name="content1" cols="100" rows="8" style="width:900px;height:700px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
+    <br />
+    <input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
+</form>
+</body>
+</html>
+
+--------------------------------------------
+设置说明：需要在classpath下面加上一个richtext.properties文件，内容如下：
+#设置图片存放的路径
+location=d://images
+#设置网络取图片的路径
+host=http://localhost:8080/images
+
+
+---------------------------------------------------------------
+使用例子
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="ke" uri="http://www.bangduoduo.com/ke" %>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<ke:simple content="content"/>
+<form name="abc" method="post" action="demo.jsp">
+    <textarea name="content" cols="100" rows="8" style="width:900px;height:700px;visibility:hidden;"></textarea>
+    <br />
+    <input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
+</form>
+</body>
+</html>
